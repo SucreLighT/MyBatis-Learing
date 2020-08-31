@@ -1,6 +1,7 @@
 package cn.sucrelt.dao;
 
 import cn.sucrelt.domain.User;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -10,5 +11,6 @@ public interface UserDao {
      *
      * @return
      */
+    // @Select("select * from user")
     List<User> findAll();
 }
