@@ -1,6 +1,6 @@
 package cn.sucrelt.dao.impl;
 
-import cn.sucrelt.dao.UserDao;
+import cn.sucrelt.dao.UserMapper;
 import cn.sucrelt.domain.User;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -13,7 +13,7 @@ import java.util.List;
  * @date: 2020/08/31
  * @time: 15:00
  */
-public class UserDaoImpl implements UserDao {
+public class UserMapperImpl implements UserMapper {
 
     private SqlSessionFactory factory;
 
@@ -22,7 +22,7 @@ public class UserDaoImpl implements UserDao {
      *
      * @param factory
      */
-    public UserDaoImpl(SqlSessionFactory factory) {
+    public UserMapperImpl(SqlSessionFactory factory) {
         this.factory = factory;
     }
 

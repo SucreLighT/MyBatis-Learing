@@ -1,7 +1,7 @@
 package cn.sucrelt.test;
 
-import cn.sucrelt.dao.UserDao;
-import cn.sucrelt.dao.impl.UserDaoImpl;
+import cn.sucrelt.dao.UserMapper;
+import cn.sucrelt.dao.impl.UserMapperImpl;
 import cn.sucrelt.domain.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -29,9 +29,9 @@ public class MybatisTest2 {
         SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
         SqlSessionFactory factory = builder.build(in);
         //3.使用实现类创建Dao对象
-        UserDao userDao = new UserDaoImpl(factory);
+        UserMapper userMapper = new UserMapperImpl(factory);
         //4.使用代理对象执行方法
-        List<User> users = userDao.findAll();
+        List<User> users = userMapper.findAll();
         for (User user :
                 users) {
             System.out.println(user);

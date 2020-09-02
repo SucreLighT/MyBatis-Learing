@@ -1,11 +1,11 @@
 package cn.sucrelt.dao;
 
 import cn.sucrelt.domain.User;
-import org.apache.ibatis.annotations.Select;
+
 
 import java.util.List;
 
-public interface UserDao {
+public interface UserMapper {
     /**
      * 查询所有记录
      *
