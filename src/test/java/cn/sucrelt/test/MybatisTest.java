@@ -125,7 +125,8 @@ public class MybatisTest {
     @Test
     public void testFindByName() throws IOException {
         //使用代理对象执行方法
-        List<User> users = userMapper.findByName("%王%");
+        // List<User> users = userMapper.findByName("%王%");
+        List<User> users = userMapper.findByName("王");
         for (User user :
                 users) {
             System.out.println(user);
