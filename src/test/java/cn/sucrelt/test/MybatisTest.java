@@ -75,10 +75,10 @@ public class MybatisTest {
     @Test
     public void testSave() throws IOException {
         User user = new User();
-        user.setUsername("mybatis last insertId");
-        user.setBirthday(new Date());
-        user.setSex("男");
-        user.setAddress("南京");
+        user.setUserName("mybatis last insertId");
+        user.setUserBirthday(new Date());
+        user.setUserSex("男");
+        user.setUserAddress("南京");
 
         System.out.println("保存操作之前：" + user);
         //使用代理对象执行方法
@@ -93,11 +93,11 @@ public class MybatisTest {
     @Test
     public void testUpdate() throws IOException {
         User user = new User();
-        user.setId(51);
-        user.setUsername("mybatis updateUser");
-        user.setBirthday(new Date());
-        user.setSex("男");
-        user.setAddress("南京");
+        user.setUserId(51);
+        user.setUserName("mybatis updateUser");
+        user.setUserBirthday(new Date());
+        user.setUserSex("男");
+        user.setUserAddress("南京");
 
         //使用代理对象执行方法
         userMapper.updateUser(user);
@@ -154,7 +154,7 @@ public class MybatisTest {
     public void testFindByQueryVo() {
         QueryVo vo = new QueryVo();
         User user = new User();
-        user.setUsername("%王%");
+        user.setUserName("%王%");
         vo.setUser(user);
 
         List<User> users = userMapper.findByVo(vo);
