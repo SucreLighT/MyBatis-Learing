@@ -48,7 +48,7 @@ public class MybatisTest {
     public void destroy() throws IOException {
         //提交事务
         sqlSession.commit();
-        
+
         in.close();
         sqlSession.close();
     }
@@ -81,5 +81,31 @@ public class MybatisTest {
 
         //使用代理对象执行方法
         userMapper.saveUser(user);
+    }
+
+    /**
+     * 测试更新方法
+     */
+    @Test
+    public void testUpdate() throws IOException {
+        User user = new User();
+        user.setId(51);
+        user.setUsername("mybatis updateUser");
+        user.setBirthday(new Date());
+        user.setSex("男");
+        user.setAddress("南京");
+
+        //使用代理对象执行方法
+        userMapper.updateUser(user);
+    }
+
+    /**
+     * 测试删除方法
+     */
+    @Test
+    public void testDelete() throws IOException {
+
+        //使用代理对象执行方法
+        userMapper.deleteUser(48);
     }
 }

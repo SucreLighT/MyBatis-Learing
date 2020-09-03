@@ -38,4 +38,12 @@ public class UserMapperImpl implements UserMapper {
     public void saveUser(User user) {
 
     }
+
+    public void updateUser(User user) {
+
+    }
+
+    public void deleteUser(Integer userId) {
+
+    }
 }
