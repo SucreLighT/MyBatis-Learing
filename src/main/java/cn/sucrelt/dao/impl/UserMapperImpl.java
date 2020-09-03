@@ -34,4 +34,8 @@ public class UserMapperImpl implements UserMapper {
         session.close();
         return users;
     }
+
+    public void saveUser(User user) {
+
+    }
 }

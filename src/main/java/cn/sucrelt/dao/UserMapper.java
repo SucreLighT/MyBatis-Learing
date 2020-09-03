@@ -13,4 +13,11 @@ public interface UserMapper {
      */
     // @Select("select * from user")
     List<User> findAll();
+
+    /**
+     * 保存用户
+     *
+     * @param user
+     */
+    void saveUser(User user);
 }
