@@ -108,4 +108,27 @@ public class MybatisTest {
         //使用代理对象执行方法
         userMapper.deleteUser(48);
     }
+
+    /**
+     * 测试查询一个用户方法
+     */
+    @Test
+    public void testFindById() throws IOException {
+        //使用代理对象执行方法
+        User user = userMapper.findById(45);
+        System.out.println(user);
+    }
+
+    /**
+     * 测试模糊查询
+     */
+    @Test
+    public void testFindByName() throws IOException {
+        //使用代理对象执行方法
+        List<User> users = userMapper.findByName("%王%");
+        for (User user :
+                users) {
+            System.out.println(user);
+        }
+    }
 }

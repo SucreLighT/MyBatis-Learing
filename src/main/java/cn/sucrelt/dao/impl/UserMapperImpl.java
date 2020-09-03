@@ -46,4 +46,12 @@ public class UserMapperImpl implements UserMapper {
     public void deleteUser(Integer userId) {
 
     }
+
+    public User findById(Integer userID) {
+        return null;
+    }
+
+    public List<User> findByName(String username) {
+        return null;
+    }
 }
