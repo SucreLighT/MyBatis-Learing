@@ -1,6 +1,7 @@
 package cn.sucrelt.test;
 
 import cn.sucrelt.dao.UserMapper;
+import cn.sucrelt.domain.QueryVo;
 import cn.sucrelt.domain.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -144,5 +145,21 @@ public class MybatisTest {
         //使用代理对象执行方法
         int totalCount = userMapper.findTotalCount();
         System.out.println("TotalCount:" + totalCount);
+    }
+
+    /**
+     * 测试根据对象中条件查询
+     */
+    @Test
+    public void testFindByQueryVo() {
+        QueryVo vo = new QueryVo();
+        User user = new User();
+        user.setUsername("%王%");
+        vo.setUser(user);
+
+        List<User> users = userMapper.findByVo(vo);
+        for (User u : users) {
+            System.out.println(u);
+        }
     }
 }

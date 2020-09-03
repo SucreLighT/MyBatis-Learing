@@ -1,6 +1,7 @@
 package cn.sucrelt.dao.impl;
 
 import cn.sucrelt.dao.UserMapper;
+import cn.sucrelt.domain.QueryVo;
 import cn.sucrelt.domain.User;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -57,5 +58,9 @@ public class UserMapperImpl implements UserMapper {
 
     public int findTotalCount() {
         return 0;
+    }
+
+    public List<User> findByVo(QueryVo vo) {
+        return null;
     }
 }

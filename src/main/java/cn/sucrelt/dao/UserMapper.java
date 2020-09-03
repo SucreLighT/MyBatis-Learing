@@ -1,5 +1,6 @@
 package cn.sucrelt.dao;
 
+import cn.sucrelt.domain.QueryVo;
 import cn.sucrelt.domain.User;
 
 
@@ -57,5 +58,12 @@ public interface UserMapper {
      * @return
      */
     int findTotalCount();
+
+    /**
+     * 根据QueryVo中的条件查询
+     * @param vo
+     * @return
+     */
+    List<User> findByVo(QueryVo vo);
 
 }

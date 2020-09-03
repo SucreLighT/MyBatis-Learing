@@ -56,4 +56,11 @@
         select count(*)
         from user;
     </select>
+
+    <!-- 根据用户名称模糊查询，参数变成一个QueryVo对象了 -->
+    <select id="findByVo" resultType="cn.sucrelt.domain.User" parameterType="cn.sucrelt.domain.QueryVo">
+        select *
+        from user
+        where username like #{user.username};
+    </select>
 </mapper>
