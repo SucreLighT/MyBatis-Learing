@@ -74,13 +74,16 @@ public class MybatisTest {
     @Test
     public void testSave() throws IOException {
         User user = new User();
-        user.setUsername("mybatis saveuser");
+        user.setUsername("mybatis last insertId");
         user.setBirthday(new Date());
         user.setSex("男");
         user.setAddress("南京");
 
+        System.out.println("保存操作之前：" + user);
         //使用代理对象执行方法
         userMapper.saveUser(user);
+
+        System.out.println("保存操作之后" + user);
     }
 
     /**

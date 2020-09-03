@@ -11,6 +11,10 @@
 
     <!--保存用户-->
     <insert id="saveUser" parameterType="cn.sucrelt.domain.User">
+        <!-- 配置保存时获取插入的id -->
+        <selectKey keyColumn="id" keyProperty="id" resultType="int" order="AFTER">
+            select last_insert_id();
+        </selectKey>
         insert into user(username, birthday, sex, address)
         values (#{username}, #{birthday}, #{sex}, #{address});
     </insert>
