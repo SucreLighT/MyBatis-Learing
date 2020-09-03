@@ -50,4 +50,12 @@ public interface UserMapper {
      * @return List<User>
      */
     List<User> findByName(String username);
+
+    /**
+     * 查询所有记录数
+     *
+     * @return
+     */
+    int findTotalCount();
+
 }

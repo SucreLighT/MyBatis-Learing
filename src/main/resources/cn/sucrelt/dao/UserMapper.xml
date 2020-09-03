@@ -45,4 +45,10 @@
         from user
         where username like #{username};
     </select>
+
+    <!--查询所有记录条数-->
+    <select id="findTotalCount" resultType="int">
+        select count(*)
+        from user;
+    </select>
 </mapper>

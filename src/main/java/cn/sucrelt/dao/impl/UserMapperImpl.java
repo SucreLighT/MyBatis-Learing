@@ -54,4 +54,8 @@ public class UserMapperImpl implements UserMapper {
     public List<User> findByName(String username) {
         return null;
     }
+
+    public int findTotalCount() {
+        return 0;
+    }
 }

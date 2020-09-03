@@ -131,4 +131,14 @@ public class MybatisTest {
             System.out.println(user);
         }
     }
+
+    /**
+     * 测试查询所有记录
+     */
+    @Test
+    public void testFindTotalCount() throws IOException {
+        //使用代理对象执行方法
+        int totalCount = userMapper.findTotalCount();
+        System.out.println("TotalCount:" + totalCount);
+    }
 }
