@@ -110,7 +110,7 @@ public class MybatisUserTest {
     public void testDelete() throws IOException {
 
         //使用代理对象执行方法
-        userMapper.deleteUser(48);
+        userMapper.deleteUser(54);
     }
 
     /**

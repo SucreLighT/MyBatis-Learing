@@ -24,21 +24,21 @@
     <!--保存用户-->
     <insert id="saveUser" parameterType="cn.sucrelt.domain.User">
         <!-- 配置保存时获取插入的id -->
-        <selectKey keyColumn="id" keyProperty="id" resultType="int" order="AFTER">
+        <selectKey keyColumn="id" keyProperty="userId" resultType="int" order="AFTER">
             select last_insert_id();
         </selectKey>
         insert into user(username, birthday, sex, address)
-        values (#{username}, #{birthday}, #{sex}, #{address});
+        values (#{userName}, #{userBirthday}, #{userSex}, #{userAddress});
     </insert>
 
     <!--更新用户-->
     <update id="updateUser" parameterType="cn.sucrelt.domain.User">
         update user
-        set username=#{username},
-            birthday=#{birthday},
-            sex=#{sex},
-            address=#{address}
-        where id = #{id};
+        set username=#{userName},
+            birthday=#{userBirthday},
+            sex=#{userSex},
+            address=#{userAddress}
+        where id = #{userId};
     </update>
 
     <!--删除用户-->
@@ -49,14 +49,14 @@
     </delete>
 
     <!--根据id查询一个用户信息-->
-    <select id="findById" parameterType="Integer" resultType="cn.sucrelt.domain.User">
+    <select id="findById" parameterType="Integer" resultMap="userMap">
         select *
         from user
         where id = #{userId};
     </select>
 
     <!--根据name模糊查询用户-->
-    <select id="findByName" parameterType="String" resultType="cn.sucrelt.domain.User">
+    <select id="findByName" parameterType="String" resultMap="userMap">
         <!--  select * from user where username like #{username};  -->
         select *
         from user
@@ -70,9 +70,9 @@
     </select>
 
     <!-- 根据用户名称模糊查询，参数变成一个QueryVo对象了 -->
-    <select id="findByVo" resultType="cn.sucrelt.domain.User" parameterType="cn.sucrelt.domain.QueryVo">
+    <select id="findByVo" resultMap="userMap" parameterType="cn.sucrelt.domain.QueryVo">
         select *
         from user
-        where username like #{user.username};
+        where username like #{user.userName};
     </select>
 </mapper>
