@@ -31,8 +31,16 @@ public interface UserOneMapper {
 
     /**
      * 根据QueryVo中的条件查询
+     *
      * @param vo
-     * @return
+     * @return List<User>
      */
     List<User> findByVo(QueryVo vo);
+
+    /**
+     * 根据传入的参数条件查询
+     * @param user 查询条件，可能为空也可能包括user中属性的若干条
+     * @return List<User>
+     */
+    List<User> findUserByCondition(User user);
 }

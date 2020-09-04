@@ -109,4 +109,18 @@ public class MybatisUserOneTest {
             System.out.println(u);
         }
     }
+
+    /**
+     * 测试条件查询
+     */
+    @Test
+    public void testFindUserByCondition() {
+        User user = new User();
+        user.setUserName("老王");
+
+        List<User> users = userOneMapper.findUserByCondition(user);
+        for (User u : users) {
+            System.out.println(u);
+        }
+    }
 }
