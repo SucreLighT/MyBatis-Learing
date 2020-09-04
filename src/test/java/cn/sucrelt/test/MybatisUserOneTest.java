@@ -1,6 +1,7 @@
 package cn.sucrelt.test;
 
 import cn.sucrelt.dao.UserMapper;
+import cn.sucrelt.dao.UserOneMapper;
 import cn.sucrelt.domain.QueryVo;
 import cn.sucrelt.domain.User;
 import org.apache.ibatis.io.Resources;
@@ -19,13 +20,13 @@ import java.util.List;
 /**
  * @description:
  * @author: sucre
- * @date: 2020/08/31
- * @time: 09:22
+ * @date: 2020/09/04
+ * @time: 14:58
  */
-public class MybatisTest {
+public class MybatisUserOneTest {
     private InputStream in;
     private SqlSession sqlSession;
-    private UserMapper userMapper;
+    private UserOneMapper userOneMapper;
 
     /**
      * @throws IOException
@@ -39,7 +40,7 @@ public class MybatisTest {
         //3.使用工厂生产SqlSession对象
         sqlSession = factory.openSession();
         //4.使用SqlSession对象创建Dao接口的代理对象
-        userMapper = sqlSession.getMapper(UserMapper.class);
+        userOneMapper = sqlSession.getMapper(UserOneMapper.class);
     }
 
     /**
@@ -62,55 +63,11 @@ public class MybatisTest {
     @Test
     public void testFindAll() throws IOException {
         //使用代理对象执行方法
-        List<User> users = userMapper.findAll();
+        List<User> users = userOneMapper.findAll();
         for (User user :
                 users) {
             System.out.println(user);
         }
-    }
-
-    /**
-     * 测试保存方法
-     */
-    @Test
-    public void testSave() throws IOException {
-        User user = new User();
-        user.setUserName("mybatis last insertId");
-        user.setUserBirthday(new Date());
-        user.setUserSex("男");
-        user.setUserAddress("南京");
-
-        System.out.println("保存操作之前：" + user);
-        //使用代理对象执行方法
-        userMapper.saveUser(user);
-
-        System.out.println("保存操作之后" + user);
-    }
-
-    /**
-     * 测试更新方法
-     */
-    @Test
-    public void testUpdate() throws IOException {
-        User user = new User();
-        user.setUserId(51);
-        user.setUserName("mybatis updateUser");
-        user.setUserBirthday(new Date());
-        user.setUserSex("男");
-        user.setUserAddress("南京");
-
-        //使用代理对象执行方法
-        userMapper.updateUser(user);
-    }
-
-    /**
-     * 测试删除方法
-     */
-    @Test
-    public void testDelete() throws IOException {
-
-        //使用代理对象执行方法
-        userMapper.deleteUser(48);
     }
 
     /**
@@ -119,7 +76,7 @@ public class MybatisTest {
     @Test
     public void testFindById() throws IOException {
         //使用代理对象执行方法
-        User user = userMapper.findById(45);
+        User user = userOneMapper.findById(45);
         System.out.println(user);
     }
 
@@ -130,21 +87,11 @@ public class MybatisTest {
     public void testFindByName() throws IOException {
         //使用代理对象执行方法
         // List<User> users = userMapper.findByName("%王%");
-        List<User> users = userMapper.findByName("王");
+        List<User> users = userOneMapper.findByName("王");
         for (User user :
                 users) {
             System.out.println(user);
         }
-    }
-
-    /**
-     * 测试查询所有记录
-     */
-    @Test
-    public void testFindTotalCount() throws IOException {
-        //使用代理对象执行方法
-        int totalCount = userMapper.findTotalCount();
-        System.out.println("TotalCount:" + totalCount);
     }
 
     /**
@@ -157,7 +104,7 @@ public class MybatisTest {
         user.setUserName("%王%");
         vo.setUser(user);
 
-        List<User> users = userMapper.findByVo(vo);
+        List<User> users = userOneMapper.findByVo(vo);
         for (User u : users) {
             System.out.println(u);
         }
