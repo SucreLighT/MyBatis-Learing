@@ -43,4 +43,11 @@ public interface UserOneMapper {
      * @return List<User>
      */
     List<User> findUserByCondition(User user);
+
+    /**
+     * 根据QueryVo中提供的id集合查询用户信息
+     * @param vo
+     * @return
+     */
+    List<User> findUserByIds(QueryVo vo);
 }

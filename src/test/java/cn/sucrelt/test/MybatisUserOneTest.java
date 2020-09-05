@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -121,6 +122,25 @@ public class MybatisUserOneTest {
         List<User> users = userOneMapper.findUserByCondition(user);
         for (User u : users) {
             System.out.println(u);
+        }
+    }
+
+    /**
+     * 测试foreach标签
+     */
+    @Test
+    public void testFindUserByIds() {
+        QueryVo vo = new QueryVo();
+        List<Integer> ids = new ArrayList<Integer>();
+        ids.add(41);
+        ids.add(42);
+        ids.add(43);
+        ids.add(46);
+        vo.setIds(ids);
+
+        List<User> users = userOneMapper.findUserByIds(vo);
+        for (User user : users) {
+            System.out.println(user);
         }
     }
 }

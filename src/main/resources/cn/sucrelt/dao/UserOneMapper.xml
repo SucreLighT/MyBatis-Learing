@@ -54,4 +54,16 @@
             </if>
         </where>
     </select>
+
+    <!--根据QueryVo中的id集合查询用户-->
+    <select id="findUserByIds" resultMap="userMap" parameterType="cn.sucrelt.domain.QueryVo">
+        select * from user1
+    <where>
+        <if test="ids!=null and ids.size()>0">
+            <foreach collection="ids" open="and id in (" close=")" item="id" separator=",">
+                #{id}
+            </foreach>
+        </if>
+    </where>
+    </select>
 </mapper>
