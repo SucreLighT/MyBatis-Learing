@@ -117,7 +117,7 @@ public class MybatisUserOneTest {
     public void testFindUserByCondition() {
         User user = new User();
         user.setUserName("老王");
-
+        user.setUserSex("女");
         List<User> users = userOneMapper.findUserByCondition(user);
         for (User u : users) {
             System.out.println(u);

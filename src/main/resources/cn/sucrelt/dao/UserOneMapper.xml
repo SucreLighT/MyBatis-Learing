@@ -44,9 +44,14 @@
 
     <!--根据条件查询-->
     <select id="findUserByCondition" resultMap="userMap" parameterType="cn.sucrelt.domain.User">
-        select * from user1 where 1=1
-        <if test="userName!=null">
-            and username = #{userName}
-        </if>
+        select * from user1
+        <where>
+            <if test="userName!=null">
+                and username = #{userName}
+            </if>
+            <if test="userSex!=null">
+                and sex = #{userSex}
+            </if>
+        </where>
     </select>
 </mapper>
