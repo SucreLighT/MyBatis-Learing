@@ -1,7 +1,7 @@
 package cn.sucrelt.domain;
 
 /**
- * @description:
+ * @description:扩展Account类，使用该子类实现Account和User表的一对一多表查询
  * @author: sucre
  * @date: 2020/09/06
  * @time: 13:31
