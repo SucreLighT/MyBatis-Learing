@@ -21,4 +21,11 @@ public interface AccountMapper {
      * @return
      */
     List<AccountUser> findAllAccount();
+
+    /**
+     * 查询所有账户，并带有用户名和地址信息，第二种方式
+     *
+     * @return
+     */
+    List<Account> findAllAccount2();
 }

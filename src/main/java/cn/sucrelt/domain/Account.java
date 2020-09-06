@@ -13,6 +13,19 @@ public class Account implements Serializable {
     private Integer uid;
     private Double money;
 
+    /**
+     * 从表实体包含一个主表实体的对象引用
+     */
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
         return "AccountMapper{" +

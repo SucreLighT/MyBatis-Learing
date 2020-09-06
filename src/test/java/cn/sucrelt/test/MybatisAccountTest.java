@@ -82,4 +82,21 @@ public class MybatisAccountTest {
             System.out.println(accountUser);
         }
     }
+
+    /**
+     * 测试查询所有账户，同时包含用户名称，第二种方式
+     *
+     * @throws IOException
+     */
+    @Test
+    public void testFindAllAccount2() throws IOException {
+        //使用代理对象执行方法
+        List<Account> accounts = accountMapper.findAllAccount2();
+        for (Account account :
+                accounts) {
+            System.out.println("----------------");
+            System.out.println(account);
+            System.out.println(account.getUser());
+        }
+    }
 }
