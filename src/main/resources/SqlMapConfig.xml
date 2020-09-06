@@ -27,5 +27,6 @@
         <mapper resource="cn/sucrelt/dao/UserMapper.xml"/>
 <!--    <mapper class="cn.sucrelt.dao.UserMapper"/>-->
         <mapper resource="cn/sucrelt/dao/UserOneMapper.xml"/>
+        <mapper resource="cn/sucrelt/dao/AccountMapper.xml"/>
     </mappers>
 </configuration>
