@@ -10,6 +10,12 @@
         from account;
     </select>
 
-
+    <!--查询所有账户，同时包含用户名和地址-->
+    <select id="findAllAccount" resultType="cn.sucrelt.domain.AccountUser">
+        SELECT account.*, user.username, user.address
+        FROM account,
+             user
+        WHERE user.id = account.UID
+    </select>
 
 </mapper>

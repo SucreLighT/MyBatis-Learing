@@ -2,6 +2,7 @@ package cn.sucrelt.test;
 
 import cn.sucrelt.dao.AccountMapper;
 import cn.sucrelt.domain.Account;
+import cn.sucrelt.domain.AccountUser;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -52,6 +53,11 @@ public class MybatisAccountTest {
         sqlSession.close();
     }
 
+    /**
+     * 测试查询所有账户
+     *
+     * @throws IOException
+     */
     @Test
     public void testFindAll() throws IOException {
         //使用代理对象执行方法
@@ -59,6 +65,21 @@ public class MybatisAccountTest {
         for (Account account :
                 accounts) {
             System.out.println(account);
+        }
+    }
+
+    /**
+     * 查询所有账户，同时包含用户名称
+     *
+     * @throws IOException
+     */
+    @Test
+    public void testFindAllAccount() throws IOException {
+        //使用代理对象执行方法
+        List<AccountUser> accountUsers = accountMapper.findAllAccount();
+        for (AccountUser accountUser :
+                accountUsers) {
+            System.out.println(accountUser);
         }
     }
 }
