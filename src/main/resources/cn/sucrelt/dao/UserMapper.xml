@@ -14,6 +14,28 @@
         <result column="birthday" property="userBirthday"/>
     </resultMap>
 
+    <!--定义加入Account集合的User对象的resultMap-->
+    <resultMap id="userAccountMap" type="cn.sucrelt.domain.User">
+        <id property="userId" column="id"></id>
+        <result column="username" property="userName"/>
+        <result column="address" property="userAddress"/>
+        <result column="sex" property="userSex"/>
+        <result column="birthday" property="userBirthday"/>
+        <!-- collection是用于建立一对多中集合属性的对应关系 property为主表对应实体类中的属性 ofType用于指定集合元素的数据类型 -->
+        <collection property="accounts" ofType="cn.sucrelt.domain.Account">
+            <id column="aid" property="id"/>
+            <result column="uid" property="uid"/>
+            <result column="money" property="money"/>
+        </collection>
+    </resultMap>
+
+
+    <!-- 根据用户查询所有账户 -->
+    <select id="findAllAccountByUser" resultMap="userAccountMap">
+        select u.*, a.id as aid, a.uid, a.money
+        from user u
+        left outer join account a on u.id = a.uid
+    </select>
 
     <!--查询所有-->
     <select id="findAll" resultMap="userMap">

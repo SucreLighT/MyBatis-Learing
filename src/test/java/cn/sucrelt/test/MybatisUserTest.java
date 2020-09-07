@@ -162,4 +162,19 @@ public class MybatisUserTest {
             System.out.println(u);
         }
     }
+
+    /**
+     * 测试查询用户所有账户
+     */
+    @Test
+    public void testFindAllAccountByUser() {
+        List<User> users = userMapper.findAllAccountByUser();
+
+        for (User user :
+                users) {
+            System.out.println("-----------------------");
+            System.out.println(user);
+            System.out.println(user.getAccounts());
+        }
+    }
 }

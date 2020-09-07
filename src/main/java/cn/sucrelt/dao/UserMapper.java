@@ -66,4 +66,11 @@ public interface UserMapper {
      */
     List<User> findByVo(QueryVo vo);
 
+
+    /**
+     * 一对多查询，查询一个用户下的所有账户
+     * @return
+     */
+    List<User> findAllAccountByUser();
+
 }
