@@ -42,7 +42,19 @@
    </dependency>
    ```
 
-2. 创建实体类以及对应的dao类，如User类和UserDao类
+2. 创建实体类以及对应的Dao接口，如User类和UserMapper接口
+
+   ```java
+   public interface UserMapper {
+       /**
+        * 根据id查询一个用户
+        *
+        * @param userID
+        * @return User
+        */
+       User findById(Integer id);
+   }
+   ```
 
 3. 在resources文件夹下创建MyBatis主配置文件SqlMapConfig.xml
 
@@ -84,13 +96,16 @@
    <!DOCTYPE mapper
            PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
            "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-   <mapper namespace="cn.sucrelt.dao.UserDao" resultType="cn.sucrelt.domain.User">
-       <select id="findAll">
-           select * from user;
+   <mapper namespace="cn.sucrelt.dao.UserMapper" resultType="cn.sucrelt.domain.User">
+       <!--根据id查询一个用户信息-->
+       <select id="findById" parameterType="Integer" resultMap="userMap">
+           select *
+           from user
+           where id = #{id};
        </select>
    </mapper>
    ```
-   
+
 5. 编写测试文件，每个Mybatis应用都是以SqlSessionFactory的实例为核心的，首先将配置文件通过输入流读取，SqlSessionFactoryBuilder从配置中构建出SqlSessionFactory实例，在获取到Factory对象后创建出SqlSession实例，通过SqlSession对象的映射器方法获取对应的实体类并执行操作，最后释放资源。
 
    ```java
@@ -102,9 +117,9 @@
    //3.使用工厂生产SqlSession对象
    SqlSession session = factory.openSession();
    //4.使用SqlSession对象创建Dao接口的代理对象
-   UserDao userDao = session.getMapper(UserDao.class);
+   UserMapper userMapper = session.getMapper(UserMapper.class);
    //5.使用代理对象执行方法
-   List<User> users = userDao.findAll();
+   List<User> users = userMapper.findAll();
    for (User user :
            users) {
        System.out.println(user);
@@ -125,7 +140,7 @@
       + 避免了使用new创建新对象，解耦（降低类之间的依赖关系）。
    3. SqlSessionFactoryBuilder创建者模式：
       + 把对象的创建细节隐藏，使使用者直接调用方法即可拿到复杂对象。
-   4. session.getMapper(UserDao.class);使用代理模式
+   4. session.getMapper(UserMapper.class);使用代理模式
       + 使用另一个类实现并增强一个类的功能。
       + :star:getMapper方法的本质：使用Proxy.newProxyInstance()方法生成代理对象MapperProxy类，该类最终会生成一个MappedMethod对象,然后执行其execute()方法,将当前的sqlSession和方法参数传入执行sql，最终还是调用了sqlSession相应的方法进行的查询，比如说最常用的返回多个值就是调用了sqlSession的selectList()方法完成查询。
 
@@ -136,7 +151,17 @@
    + 映射文件中操作配置标签（select）的id属性的取值为Dao接口的方法名。
    + 映射文件中操作配置标签的resultType属性，表示返回的封装对象的类型。
 
-7. 使用**注解**配置MyBatis
+7. **:star:Dao接口的原理**
+
+   + Dao接口，Mapper接口，接口的全限名，就是映射⽂件中的namespace的值，接口的⽅法名，就是映射⽂件中对应操作标签（如select）的id值，接口⽅法内的参数，就是传递给sql的参数。
+
+   + Mapper接口是没有实现类的，当调⽤接口⽅法时，接口全限名+⽅法名拼接字符串作为key值，可唯⼀定位⼀个操作标签（select，insert，update，delete等）。
+
+   + Dao接口⾥的⽅法，是不能重载的，因为是全限名+⽅法名的保存和寻找策略。
+
+     Dao接口的⼯作原理是JDK动态代理，Mybatis运⾏时会使⽤JDK动态代理为Dao接口⽣成代理proxy对象，代理对象proxy会拦截接口⽅法，转⽽执⾏映射文件中的sql，然后将sql执⾏结果返回。
+
+8. 使用**注解**配置MyBatis
 
    + 在持久层实体类中添加注解
 
